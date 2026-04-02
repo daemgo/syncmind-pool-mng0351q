@@ -68,11 +68,11 @@ function EmployeeIndexPage() {
   };
 
   return (
-    <div className="p-6 space-y-5">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-5">
       {/* Page Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">员工管理</h1>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="pl-9 sm:pl-0">
+          <h1 className="text-xl md:text-2xl font-semibold text-foreground">员工管理</h1>
           <p className="text-sm text-muted-foreground mt-0.5">
             共 {employees.length} 条记录
           </p>
@@ -82,6 +82,7 @@ function EmployeeIndexPage() {
             setEditingEmployee(undefined);
             setFormOpen(true);
           }}
+          className="w-full sm:w-auto"
         >
           <Plus className="h-4 w-4 mr-2" />
           新建员工

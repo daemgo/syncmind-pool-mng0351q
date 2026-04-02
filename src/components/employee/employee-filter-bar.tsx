@@ -28,39 +28,41 @@ export function EmployeeFilterBar({
   onStatusChange,
 }: EmployeeFilterBarProps) {
   return (
-    <div className="flex flex-wrap gap-3 p-4 bg-card rounded-xl border border-border/50 shadow-sm">
-      <div className="relative flex-1 min-w-48">
+    <div className="flex flex-col sm:flex-row flex-wrap gap-3 p-4 bg-card rounded-xl border border-border/50 shadow-sm">
+      <div className="relative flex-1 min-w-0">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="搜索员工姓名、工号..."
+          placeholder="搜索员工..."
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
           className="pl-9"
         />
       </div>
-      <Select value={department} onValueChange={onDepartmentChange}>
-        <SelectTrigger className="w-40">
-          <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
-          <SelectValue placeholder="部门" />
-        </SelectTrigger>
-        <SelectContent>
-          {departments.map((d) => (
-            <SelectItem key={d} value={d === "全部部门" ? "all" : d}>
-              {d}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Select value={status} onValueChange={onStatusChange}>
-        <SelectTrigger className="w-32">
-          <SelectValue placeholder="状态" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">全部状态</SelectItem>
-          <SelectItem value="active">在职</SelectItem>
-          <SelectItem value="inactive">离职</SelectItem>
-        </SelectContent>
-      </Select>
+      <div className="flex gap-2 flex-wrap sm:flex-nowrap">
+        <Select value={department} onValueChange={onDepartmentChange}>
+          <SelectTrigger className="flex-1 sm:flex-none sm:w-40">
+            <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
+            <SelectValue placeholder="部门" />
+          </SelectTrigger>
+          <SelectContent>
+            {departments.map((d) => (
+              <SelectItem key={d} value={d === "全部部门" ? "all" : d}>
+                {d}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select value={status} onValueChange={onStatusChange}>
+          <SelectTrigger className="flex-1 sm:flex-none sm:w-32">
+            <SelectValue placeholder="状态" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">全部状态</SelectItem>
+            <SelectItem value="active">在职</SelectItem>
+            <SelectItem value="inactive">离职</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }

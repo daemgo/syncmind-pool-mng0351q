@@ -31,49 +31,51 @@ export function VisitorFilterBar({
   const visitTypeOptions = getDictOptions("dict-visit-type");
 
   return (
-    <div className="flex flex-wrap gap-3 p-4 bg-card rounded-xl border border-border/50 shadow-sm">
-      <div className="relative flex-1 min-w-48">
+    <div className="flex flex-col sm:flex-row flex-wrap gap-3 p-4 bg-card rounded-xl border border-border/50 shadow-sm">
+      <div className="relative flex-1 min-w-0">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="搜索访客姓名、公司..."
+          placeholder="搜索访客..."
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
           className="pl-9"
         />
       </div>
-      <Select
-        value={status}
-        onValueChange={(v) => onStatusChange(v as VisitorStatus | "all")}
-      >
-        <SelectTrigger className="w-36">
-          <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
-          <SelectValue placeholder="访客状态" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">全部状态</SelectItem>
-          {statusOptions.map((o) => (
-            <SelectItem key={o.value} value={o.value}>
-              {o.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <Select
-        value={visitType}
-        onValueChange={(v) => onVisitTypeChange(v as VisitType | "all")}
-      >
-        <SelectTrigger className="w-36">
-          <SelectValue placeholder="访问类型" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">全部类型</SelectItem>
-          {visitTypeOptions.map((o) => (
-            <SelectItem key={o.value} value={o.value}>
-              {o.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <div className="flex gap-2 flex-wrap sm:flex-nowrap">
+        <Select
+          value={status}
+          onValueChange={(v) => onStatusChange(v as VisitorStatus | "all")}
+        >
+          <SelectTrigger className="flex-1 sm:flex-none sm:w-36">
+            <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
+            <SelectValue placeholder="状态" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">全部状态</SelectItem>
+            {statusOptions.map((o) => (
+              <SelectItem key={o.value} value={o.value}>
+                {o.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        <Select
+          value={visitType}
+          onValueChange={(v) => onVisitTypeChange(v as VisitType | "all")}
+        >
+          <SelectTrigger className="flex-1 sm:flex-none sm:w-36">
+            <SelectValue placeholder="类型" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">全部类型</SelectItem>
+            {visitTypeOptions.map((o) => (
+              <SelectItem key={o.value} value={o.value}>
+                {o.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 }

@@ -45,7 +45,8 @@ export function EmployeeTable({ data, onEdit, onDelete }: EmployeeTableProps) {
 
   return (
     <div className="border border-border/50 rounded-xl overflow-hidden shadow-sm">
-      <div className="overflow-x-auto">
+      {/* Desktop table */}
+      <div className="hidden md:block overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="bg-muted/40 border-b border-border/50">
@@ -159,6 +160,82 @@ export function EmployeeTable({ data, onEdit, onDelete }: EmployeeTableProps) {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Mobile card list */}
+      <div className="md:hidden divide-y divide-border/50">
+        {data.map((emp) => (
+          <div key={emp.id} className="p-4 hover:bg-muted/20">
+            <div className="flex items-start justify-between gap-2 mb-2">
+              <div className="flex items-center gap-2.5">
+                <Avatar className={cn("h-10 w-10 text-sm font-medium", getAvatarColor(emp.name))}>
+                  <AvatarFallback className={cn("text-sm", getAvatarColor(emp.name))}>
+                    {getInitials(emp.name)}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-medium text-foreground">{emp.name}</div>
+                  <div className="text-xs text-muted-foreground">{emp.department} · {emp.position}</div>
+                </div>
+              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="h-8 w-8">
+                    <MoreHorizontal className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem asChild>
+                    <Link
+                      to="/employee/$id"
+                      params={{ id: emp.id }}
+                      className="flex items-center gap-2"
+                    >
+                      <Eye className="h-4 w-4" />
+                      查看详情
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => onEdit(emp)}
+                    className="flex items-center gap-2"
+                  >
+                    <Pencil className="h-4 w-4" />
+                    编辑
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => onDelete(emp.id)}
+                    className="text-destructive flex items-center gap-2"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                    删除
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+            <div className="grid grid-cols-2 gap-2 text-sm">
+              <div>
+                <span className="text-muted-foreground">电话：</span>
+                <span className="text-foreground">{emp.phone}</span>
+              </div>
+              <div>
+                <span className="text-muted-foreground">邮箱：</span>
+                <span className="text-foreground truncate">{emp.email}</span>
+              </div>
+              <div>
+                <Badge
+                  className={cn(
+                    "rounded-full text-xs",
+                    emp.status === "active"
+                      ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+                      : "bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400"
+                  )}
+                >
+                  {emp.status === "active" ? "在职" : "离职"}
+                </Badge>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

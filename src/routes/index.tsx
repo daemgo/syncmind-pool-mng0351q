@@ -115,10 +115,10 @@ function DashboardPage() {
     .slice(0, 5);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-4 md:p-6 space-y-4 md:space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-2xl font-semibold text-foreground">数据概览</h1>
+      <div className="pl-9 md:pl-0">
+        <h1 className="text-xl md:text-2xl font-semibold text-foreground">数据概览</h1>
         <p className="text-sm text-muted-foreground mt-0.5">
           欢迎回来，以下是访客系统实时数据
         </p>

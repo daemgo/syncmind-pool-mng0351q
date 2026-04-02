@@ -42,7 +42,7 @@ function RootComponent() {
         }}
       >
         <Sidebar />
-        <div className="ml-60 min-h-screen">
+        <div className="md:ml-60 min-h-screen">
           <Outlet />
         </div>
         <Scripts />
