@@ -1,0 +1,33 @@
+specHash: "visitor-app-v1-20260402"
+generatedAt: "2026-04-02T00:00:00.000Z"
+sourceMode: "dialog"
+modules:
+  - moduleId: visitor
+    moduleName: 访客管理
+    locked: false
+    files:
+      - src/types/visitor.ts
+      - src/mock/visitor.ts
+      - src/components/visitor/visitor-filter-bar.tsx
+      - src/components/visitor/visitor-table.tsx
+      - src/components/visitor/visitor-detail.tsx
+      - src/components/visitor/visitor-form-dialog.tsx
+      - src/routes/visitor/index.tsx
+      - src/routes/visitor/$id.tsx
+  - moduleId: employee
+    moduleName: 员工管理
+    locked: false
+    files:
+      - src/types/employee.ts
+      - src/mock/employee.ts
+      - src/components/employee/employee-filter-bar.tsx
+      - src/components/employee/employee-table.tsx
+      - src/components/employee/employee-detail.tsx
+      - src/components/employee/employee-form-dialog.tsx
+      - src/routes/employee/index.tsx
+      - src/routes/employee/$id.tsx
+  - moduleId: dashboard
+    moduleName: 数据概览
+    locked: false
+    files:
+      - src/routes/index.tsx
